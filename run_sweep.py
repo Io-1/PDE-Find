@@ -57,9 +57,10 @@ def main():
     # Global defaults for search
     global_n_iter = cfg.get("sweep_n_iter", 250)
     global_search_type = cfg.get("search_type", "random")
-
+    
     # Determine which models to run
-    model_list = list(ALL_MODELS.keys()) if args.model == "all" else [args.model]
+    model_list = list(cfg["models"].keys())
+    print(model_list)
 
     for name in model_list:
         print(f"--- Sweeping model: {name} ---")

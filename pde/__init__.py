@@ -8,11 +8,11 @@ from .allen_cahn import AllenCahn
 from .brusselator import Brusselator
 
 ALL_MODELS = {
-    # "gray_scott": GrayScott,
+    "gray_scott": GrayScott,
     "heat":      HeatEquation,
-    # "fisher_kpp":FisherKPP,
-    # "allen_cahn":AllenCahn,
-    # "brusselator": Brusselator,
+    "fisher_kpp":FisherKPP,
+    "allen_cahn":AllenCahn,
+    "brusselator": Brusselator,
 }
 
 __all__ = ["ALL_MODELS"]
