@@ -1,0 +1,120 @@
+# Central configuration for SINDy PDE pipeline
+
+# Global random seed for reproducibility
+seed: 123
+n_jobs: 4 
+
+# Directory paths
+paths:
+  data_dir: data
+  results_dir: results
+
+# Models and their settings
+models:
+  heat:
+    alpha: 0.07
+    N_space: 64
+    L_space: 1.0
+    N_time: 32
+    dt: 0.05
+
+    library:
+      derivative_order: 4
+      include_bias: true
+      differentiation_method: 
+      include_interaction: false
+      is_uniform: true
+      feature_functions: [f_u, f_uu]
+      feature_presets: [all]
+      drop_derivatives: []
+        
+
+    optimizers:
+
+      - name: STLSQ
+        search_type: random
+        normalize_columns: true
+        max_iter: 100
+        sweep_n_iter: 123
+        sweep:
+          threshold: [0.01, 5.0, 20]
+          alpha:     [1e-06, 1e-02, 20]
+
+      # - name: SR3
+      #   normalize_columns: true
+      #   max_iter: 200
+      #   sweep_n_iter: 600
+
+      #   # L0 prox, focus on smaller thresholds
+      #   thresholder: l0
+      #   search_type: random
+      #   sweep:
+      #     threshold: [0, 10, 20]
+      #     nu:        [1e-6, 1e-01, 50]
+      #     tol:       [1e-09, 1e-05, 20]
+
+      # - name: SR3
+      #   normalize_columns: true
+      #   max_iter: 200
+      #   sweep_n_iter: 400
+
+      #   thresholder: l1
+      #   search_type: random
+      #   sweep:
+      #     threshold: [0.0005, 0.1, 100]
+      #     nu:        [1e-6, 1e-04, 50]
+      #     tol:       [1e-08, 1e-06, 20]
+
+      # - name: FROLS
+      #   normalize_columns: true
+      #   max_iter: 100
+      #   sweep_n_iter: 400
+      #   sweep:
+      #     alpha: [1e-07, 1e-05, 50]
+      #     kappa: [1e-8, 1e-06, 50]
+
+      # - name: SSR
+      #   normalize_columns: true
+      #   max_iter: 100
+      #   criteria: coefficient_value
+      #   sweep_n_iter: 400
+      #   sweep:
+      #     alpha: [1e-06, 1e-02, 50]
+      #     kappa: [1e-8, 1e-02, 50]
+
+  # fisher_kpp:
+  #   D: 0.01
+  #   r: 1.0
+  #   N_space: 16
+  #   L_space: 1.0
+  #   N_time: 16
+  #   dt: 0.1
+
+  # allen_cahn:
+  #   D: 0.01
+  #   r: 1.0
+  #   N_space: 64
+  #   L_space: 1.0
+  #   N_time: 64
+  #   dt: 0.025
+
+  # brusselator: 
+  #   A: 1.0
+  #   B: 10.0
+  #   Du: 0.01
+  #   Dv: 0.005
+  #   N_space: 128
+  #   L_space: 1.0
+  #   N_time: 128
+  #   dt: 0.001
+
+
+  # gray_scott:
+  #   Du: 0.01
+  #   Dv: 0.005
+  #   F: 0.04
+  #   k: 0.06
+  #   N_space: 512
+  #   L_space: 1
+  #   N_time: 256
+  #   dt: 0.05
