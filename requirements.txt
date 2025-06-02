@@ -1,0 +1,8 @@
+numpy>=1.24
+scipy>=1.10          # gaussian_filter1d, linear algebra
+scikit-learn>=1.3    # ParameterGrid, metrics, etc.  (pysindy depends on it)
+pysindy>=1.7         # PDELibrary, optimizers
+matplotlib>=3.7      # quick plots in generate_datasets.py
+PyYAML>=6.0          # read config.yaml
+jsonlines>=4.0       # write sweeps.jsonl
+tqdm>=4.66           # progress bars in sweep.py

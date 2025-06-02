@@ -10,6 +10,9 @@ Minimal tooling for:
 ## Quick Start
 
 ```bash
+# 0 - install requirements
+pip install -r requirements.txt
+
 # 1 – check / edit the YAML
 nano config.yaml          
 
